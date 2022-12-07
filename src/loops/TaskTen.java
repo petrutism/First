@@ -30,7 +30,6 @@ public class TaskTen {
             }
         }
     }
-
     private void writeDuplicate(int arrI) {
 
         if (isNewDuplicate(arrI)) {
@@ -38,7 +37,6 @@ public class TaskTen {
             dupCount++;
         }
     }
-
     private boolean isNewDuplicate(int arrI) {
 
         for (int k = 0; k < dupCount; k++) {
@@ -50,12 +48,10 @@ public class TaskTen {
         }
         return true;
     }
-
     private void printArray(int[] arr) {
         System.out.print("Original array: ");
         System.out.println(Arrays.toString(arr));
     }
-
     private void printDuplicates() {
         if (dupCount != 0) {
             for (int l = 0; l < dupCount; l++) {
