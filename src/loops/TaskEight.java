@@ -42,7 +42,7 @@ public class TaskEight {
             if (i % 2 == 0) {
                 arr[i] = i;
             } else {
-                arr[i] = 0 - i;
+                arr[i] = - i;
             }
         }
         return arr;
@@ -70,7 +70,7 @@ public class TaskEight {
                 System.out.print(arr[i] + " " + arr[i - 1] + " ");
             }
         } else {
-            for (int i = arr.length - 1; i > 1; i = i - 2) {
+            for (int i = arr.length - 1; i > 0; i = i - 2) {
                 System.out.print(arr[i] + " " + arr[i - 1] + " ");
             }
             System.out.print(arr[0]);

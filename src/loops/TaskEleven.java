@@ -11,7 +11,8 @@ public class TaskEleven {
         int[] array = {1, 16, 2, 0, 1, -11, 3, 4, -11, 0, 4, 16, 5};
         TaskEleven taskEleven = new TaskEleven();
 
-        taskEleven.printArray(array);
+        System.out.println("Array: " + Arrays.toString(array));
+
         int specSum = taskEleven.specifiedSum();
 
         taskEleven.findPair(array, specSum);
@@ -21,7 +22,7 @@ public class TaskEleven {
 
     private int specifiedSum() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Input sum to find pair of elements: ");
+        System.out.print("Input sum to find pair of elements sum is of: ");
         return sc.nextInt();
     }
     private void findPair(int[] arr, int sum) {
@@ -56,10 +57,6 @@ public class TaskEleven {
             pairs[pairCount][1] = arrJ;
             pairCount++;
         }
-    }
-    private void printArray(int[] arr) {
-        System.out.print("Original array: ");
-        System.out.println(Arrays.toString(arr));
     }
     private void printPairs(int sum) {
         if (pairCount != 0) {
