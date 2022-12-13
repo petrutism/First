@@ -1,6 +1,5 @@
 package localDataTime;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -17,9 +16,9 @@ public class ExampleOne {
         System.out.println("Ivestas laikas: " + time);
         System.out.println("Ivestas laikas + 2val 15 min: " + time.plusHours(2).plusMinutes(15));
         if(time.isBefore(t)) {
-            System.out.println("Ivestas laikas yra naksciau uz dabarties laika");
+            System.out.println("Ivestas laikas yra anksciau uz dabarties laika");
         } else {
-            System.out.println("Ivetsas laikas yra veliau");
+            System.out.println("Ivestas laikas yra veliau");
         }
     }
 }
