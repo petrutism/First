@@ -55,7 +55,7 @@ public class JA {
     private void codeTableToMap() {
         codeMap = new HashMap<>();
 
-        String[] codeArray = JA.CODES.split(";");
+        String[] codeArray = CODES.split(";");
 
         for (String s : codeArray) {
 

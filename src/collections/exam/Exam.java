@@ -3,15 +3,15 @@ package collections.exam;
 import java.util.*;
 
 public class Exam {
-    private static final String QUESTIONS = "Kas yra obuolys?;Gyvunas;Pastatas;Vaisius;3;Ka geria karve?;Piena;Alu;Vandeni;3;Is ko gaminamos pomidoru sultys?;Is morku;Is pomidoru;Is vistienos;2;" +
-            "Kas yra vista?;Gyvunas;Pastatas;Vaisius;1;Ka eda jautis?;Siena;Kepsnius;Cipsus;1;Is ko gaminami kiausiniai?;Is vistu;Is pomidoru;Is bulviu;1;" +
-            "Kas yra namas?;Gyvunas;Pastatas;Vaisius;2;Ka eda katinas?;Siena;Kepsnius;Cipsus;2;Is ko gaminami megztiniai?;Is vilnos;Is pomidoru;Is bulviu;1;" +
-            "Kas yra fosa?;Gyvunas;Pastatas;Vaisius;1;Ka duoda karve?;Piena;Alu;Vandeni;1;Is ko gaminamos morku sultys?;Is morku;Is pomidoru;Is vistienos;1;" +
-            "Kas yra bunkeris?;Gyvunas;Pastatas;Vaisius;2;Ka geria antis?;Piena;Alu;Vandeni;3;Is ko gaminami cepelinai?;Is morku;Is pomidoru;Is bulviu;3";
+    private static final String QUESTIONS = "Kas yra obuolys?,Gyvunas,Augalas,Pastatas,Vaisius,3;Ka geria karve?,Piena,Alu,Vandeni,3;Is ko gaminamos pomidoru sultys?,Is morku,Is pomidoru,Is vistienos,2;" +
+            "Kas yra vista?,Gyvunas,Pastatas,Vaisius,1;Ka eda jautis?,Siena,Kepsnius,Cipsus,1;Is ko gaminami kiausiniai?,Is vistu,Is pomidoru,Is bulviu,1;" +
+            "Kas yra namas?,Gyvunas,Pastatas,Vaisius,2;Ka eda katinas?,Siena,Kepsnius,Cipsus,2;Is ko gaminami megztiniai?,Is vilnos,Is pomidoru,Is bulviu,1;" +
+            "Kas yra fosa?,Gyvunas,Pastatas,Vaisius,1;Ka duoda karve?,Piena,Alu,Vandeni,1;Is ko gaminamos morku sultys?,Is morku,Is akmens,Is pomidoru,Is vistienos,1;" +
+            "Kas yra bunkeris?,Gyvunas,Pastatas,Vaisius,2;Ka geria antis?,Piena,Alu,Vandeni,3;Is ko gaminami cepelinai?,Is morku,Is pomidoru,Is bulviu,3";
 
-    private Map<String, Question> questionMap;
-    private List<String> used;
-    private Map<String, String> answers;
+    private final Map<String, Question> questionMap = new HashMap<>();
+    private final List<String> usedQuestions = new ArrayList<>();
+    private final Map<String, String> studentAnswers = new HashMap<>();
 
     public static void main(String[] args) {
         Exam exam = new Exam();
@@ -19,85 +19,80 @@ public class Exam {
         Scanner sc = new Scanner(System.in);
 
         exam.doExam(sc, random);
-        exam.printComments();
+
     }
 
     private void doExam(Scanner sc, Random rand) {
         questionsToMap();
-        answers = new HashMap<>();
+
         System.out.println("Let's begin.");
 
-        int sum = 0;
+        int mark = 0;
         String number;
         String answer;
-        String righAnsw;
 
         for (int i = 0; i < 10; i++) {
             number = generateNumber(rand);
-            righAnsw = printQuestion(number, i);
-            answer = getAnswer(sc);
-            answers.put(number, answer);
-            if (righAnsw.equals(answer)) {
-                sum++;
+            printQuestion(number, i);
+            answer = sc.nextLine();
+            studentAnswers.put(number, answer);
+            if (questionMap.get(number).rightAnswerIs().equals(answer)) {
+                mark++;
             }
         }
-        System.out.println("Your mark is " + sum);
+        String comment = "Normaliai.";
+        if (mark > 8){
+            comment = "Gerai.";
+        } else if(mark < 4){
+            comment = "Blogai.";
+        }
+        System.out.println("Gautas pazymys yra " + mark + ". " + comment);
+
+
+        printComments();
     }
 
-    private void printComments(){
+    private void printComments() {
+        StringBuilder answerVariants = new StringBuilder();
         System.out.println("There is your 10 questions:");
-        answers.forEach((key, value) -> System.out.printf("%s %s Atsakymai: 1-%s 2-%s 3-%s. Jusu atsakymas: %s. Teisingas atsakymas: %s%n", key, questionMap.get(key).getQuestion(), questionMap.get(key).getAnswerOne(), questionMap.get(key).getAnswerTwo(), questionMap.get(key).getAnswerThree(), value, questionMap.get(key).getRightAnswerIs()));
-    }
+        for (String answerKey : studentAnswers.keySet()) {
+            int num = 1;
 
-    private String printQuestion(String number, int i) {
-        Question question = questionMap.get(number);
-        System.out.println("Question number " + (i + 1) + " is: " + question.getQuestion());
-        System.out.println("Choose your answer:");
-        System.out.println("1 - " + question.getAnswerOne());
-        System.out.println("2 - " + question.getAnswerTwo());
-        System.out.println("3 - " + question.getAnswerThree());
-
-        return question.getRightAnswerIs();
-    }
-
-    private String getAnswer(Scanner sc) {
-
-        String answer;
-        while (true) {
-            answer = sc.nextLine();
-            switch (answer) {
-                case "1" -> {
-                    return "1";
-                }
-                case "2" -> {
-                    return "2";
-                }
-                case "3" -> {
-                    return "3";
-                }
-                default -> System.out.println("There is no such answer. Choose 1, 2 or 3");
+            for (String a : questionMap.get(answerKey).answers()) {
+                answerVariants.append(num++).append("-").append(a).append(" ");
             }
+            System.out.printf("%-2s %-32s Atsakymai: %-51s Jusu atsakymas: %s. Teisingas atsakymas: %s%n", answerKey,
+                    questionMap.get(answerKey).question(), answerVariants, studentAnswers.get(answerKey), questionMap.get(answerKey).rightAnswerIs());
+            answerVariants.setLength(0);
+        }
+
+    }
+
+    private void printQuestion(String number, int i) {
+        System.out.println("Question number " + (i + 1) + " is: " + questionMap.get(number).question());
+        System.out.println("Choose your answer:");
+        int count = 1;
+        for (String answer : questionMap.get(number).answers()) {
+            System.out.println(count++ + " - " + answer);
         }
     }
 
     private void questionsToMap() {
-        questionMap = new HashMap<>();
-        String[] quest = Exam.QUESTIONS.split(";");
+        String[] quest = QUESTIONS.split(";");
         int count = 1;
-        for (int i = 0; i < quest.length; i += 5) {
-            questionMap.put(String.valueOf(count++), new Question(quest[i], quest[i + 1], quest[i + 2], quest[i + 3], quest[i + 4]));
+        for (String s : quest) {
+            String[] qsplit = s.split(",");
+            List<String> answers = Arrays.stream(qsplit).toList().subList(1, qsplit.length - 1);
+            questionMap.put(String.valueOf(count++), new Question(qsplit[0], answers, qsplit[qsplit.length - 1]));
         }
     }
 
     private String generateNumber(Random random) {
-        if (used == null) {
-            used = new ArrayList<>();
-        }
         int rand = random.nextInt(15) + 1;
-        while (used.contains(String.valueOf(rand))) {
+        while (usedQuestions.contains(String.valueOf(rand))) {
             rand = random.nextInt(15) + 1;
         }
-        used.add(String.valueOf(rand));
+        usedQuestions.add(String.valueOf(rand));
         return String.valueOf(rand);
     }
 }
