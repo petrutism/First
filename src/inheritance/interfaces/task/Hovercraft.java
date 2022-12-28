@@ -36,7 +36,7 @@ public class Hovercraft implements LandVehicle, SeaVessel {
 
     @Override
     public void drive() {
-        System.out.println("Driving...");
+        System.out.println("Howercraft starts to drive...");
     }
 
     @Override
