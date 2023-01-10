@@ -5,10 +5,8 @@ public class ConstantsExample {
     private static final String MONDAY = "Monday";
 
     public static void main(String[] args) {
-        System.out.println(DEVELOPER_NAME);
-        System.out.println(MONDAY);
-        System.out.println(Days.MONDAY.getName());
-        System.out.println(Days.MONDAY.getNumber());
+
+
     }
 
 }
