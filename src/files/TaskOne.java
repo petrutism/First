@@ -17,8 +17,6 @@ public class TaskOne {
         sb.reverse();
         taskOne.writeFile(sb.toString(), "taskone_copy.txt");
 
-
-
     }
 
     void writeFile(String line, String file) {
@@ -33,7 +31,7 @@ public class TaskOne {
 
     StringBuilder readFile (String file){
         StringBuilder sb = new StringBuilder();
-        try (InputStream inputStream = new FileInputStream("taskone.txt")) {
+        try (InputStream inputStream = new FileInputStream(file)) {
 
             int letter;
             while ((letter = inputStream.read()) > 0) {
