@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class PlayersFileReader {
+    private static final String PLAYERS_FILE_NAME = "players.txt";
     private static final String SPACE_DELIMITER = " ";
     private static final int PLAYER_NUMBER_IDX = 0;
     private static final int PLAYER_NAME_IDX = 1;
@@ -20,7 +21,7 @@ class PlayersFileReader {
     void readPlayers() {
         String line;
 
-        try (BufferedReader br = new BufferedReader(new FileReader("players.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(PLAYERS_FILE_NAME))) {
             while ((line = br.readLine()) != null) {
 
                 String[] ids = line.split(SPACE_DELIMITER);

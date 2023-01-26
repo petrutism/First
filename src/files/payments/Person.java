@@ -4,14 +4,10 @@ class Person {
     private final int id;
     private final String name;
     private final String surname;
-
     private double receivedMoney;
     private double sentMoney;
-
     private int sentNumber;
-
     private int receivedNumber;
-
 
     public Person(int id, String name, String surname) {
         this.id = id;

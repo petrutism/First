@@ -2,7 +2,6 @@ package files.payments;
 
 import java.util.*;
 
-
 public class PeopleMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -64,6 +63,7 @@ public class PeopleMain {
             System.out.println("This person did " + biggest.getSentNumber() + " transactions...");
         }
     }
+
     void showBiggestReceiver(List<Person> personsList) {
         int b = 0;
         Person biggest = null;

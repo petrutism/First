@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 public class BasketballMain {
+
+    StringBuilder sb = new StringBuilder();
+
     public static void main(String[] args) {
         BasketballMain basketballMain = new BasketballMain();
         PlayersFileReader playersFileReader = new PlayersFileReader();
         PointsFileReader pointsFileReader = new PointsFileReader();
         CsvWrite csvWrite = new CsvWrite();
+
+
 
         playersFileReader.readPlayers();
         pointsFileReader.readPoints();
@@ -48,9 +53,7 @@ public class BasketballMain {
                         pl.setTotalPoints(pl.getTotalPoints() + 3);
                     }
                 }
-
             }
-
         }
     }
 
@@ -71,60 +74,53 @@ public class BasketballMain {
     }
 
     private String bestPointer(List<Player> playerList) {
-        StringBuilder sb = new StringBuilder();
-        int bestPoints = 0;
-        Player bestPointer = null;
+        sb.setLength(0);
+        Player best = null;
         for (Player p : playerList) {
-            if (p.getTotalPoints() > bestPoints) {
-                bestPoints = p.getTotalPoints();
-                bestPointer = p;
+            if (p.getTotalPoints() > best.getTotalPoints()) {
+                best = p;
             }
         }
-        if (bestPointer != null) {
+        if (best != null) {
             sb.append("Best pointer is: number ")
-                    .append(bestPointer.getNumber())
-                    .append(" , ").append(bestPointer.getName())
-                    .append(" ").append(bestPointer.getSurname());
+                    .append(best.getNumber())
+                    .append(" , ").append(best.getName())
+                    .append(" ").append(best.getSurname());
         }
         return sb.toString();
     }
 
     private String bestThreePointer(List<Player> playerList) {
-        StringBuilder sb = new StringBuilder();
-        int bestThreePoints = 0;
-        Player bestThreePointer = null;
+        sb.setLength(0);
+        Player best = null;
         for (Player p : playerList) {
-            if (p.getThreePointers() > bestThreePoints) {
-                bestThreePoints = p.getThreePointers();
-                bestThreePointer = p;
+            if (p.getThreePointers() > best.getThreePointers()) {
+                best = p;
             }
         }
-        if (bestThreePointer != null) {
+        if (best != null) {
             sb.append("Best threePointer is: number ")
-                    .append(bestThreePointer.getNumber())
-                    .append(" , ").append(bestThreePointer.getName())
-                    .append(" ").append(bestThreePointer.getSurname());
+                    .append(best.getNumber())
+                    .append(" , ").append(best.getName())
+                    .append(" ").append(best.getSurname());
         }
 
         return sb.toString();
     }
 
-
     private String bestPercentage(List<Player> playerList) {
-        StringBuilder sb = new StringBuilder();
-        double bestPercent = 0;
-        Player bestPercentage = null;
+        sb.setLength(0);
+        Player best = null;
         for (Player p : playerList) {
-            if (p.getPercentage() > bestPercent) {
-                bestPercent = p.getPercentage();
-                bestPercentage = p;
+            if (p.getPercentage() > best.getPercentage()) {
+                best = p;
             }
         }
-        if (bestPercentage != null) {
+        if (best != null) {
             sb.append("Best percentage is: number ")
-                    .append(bestPercentage.getNumber())
-                    .append(" , ").append(bestPercentage.getName())
-                    .append(" ").append(bestPercentage.getSurname());
+                    .append(best.getNumber())
+                    .append(" , ").append(best.getName())
+                    .append(" ").append(best.getSurname());
         }
 
         return sb.toString();

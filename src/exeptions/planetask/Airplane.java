@@ -42,12 +42,12 @@ public class Airplane {
             case 2 -> throw new TemporaryExeption("Exeption2");
             case 3 -> throw new ImportantExeption("Exeption3");
             case 4 -> throw new ExpandChassisExeption("Exeption4");
-            case 11 -> throw new TemporaryExeption("Exeption5");
-            case 12 -> throw new ExpandChassisExeption("Exeption6");
-            case 13 -> throw new ImportantExeption("Exeption7");
-            case 14 -> throw new ExpandChassisExeption("Exeption8");
-            case 15 -> throw new TemporaryExeption("Exeption9");
-            case 16 -> throw new ExpandChassisExeption("Exeption10");
+            case 5 -> throw new TemporaryExeption("Exeption5");
+            case 6 -> throw new ExpandChassisExeption("Exeption6");
+            case 7 -> throw new ImportantExeption("Exeption7");
+            case 8 -> throw new ExpandChassisExeption("Exeption8");
+            case 9 -> throw new TemporaryExeption("Exeption9");
+            case 10 -> throw new ExpandChassisExeption("Exeption10");
 
         }
     }

@@ -1,0 +1,12 @@
+Number of males: 13 Number of females: 6
+
+Average male salary is: 50076,92 EU
+
+Average female salary is: 37666,67 EU 
+
+Males salary is more by 32,95 percents...
+
+Biggest salary is in country: DE, gender is: vyr.
+
+Most worth speciality is: Medicina
+

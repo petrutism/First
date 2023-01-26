@@ -1,7 +1,7 @@
 id, vardas, pavarde
 3297, Damien, Avila
-3130, Rosella, Burks 
-1538, Edgar, Moises 
+3130, Mindaugas, Burks
+1538, Damien, Moises
 2941, Heath, Brian 
 3547, Robin, Olsen 
 2561, Antoine, Derek 

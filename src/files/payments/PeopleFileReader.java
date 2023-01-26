@@ -35,7 +35,6 @@ class PeopleFileReader {
         } catch (IOException e) {
             System.out.println("Cannot read file..." + e.getMessage());
         }
-
     }
 
 }
